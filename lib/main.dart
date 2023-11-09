@@ -69,21 +69,25 @@ class _myAppState extends State<myApp> {
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
     var provider=Provider.of<userProvider>(context);
-    return MaterialApp(
-      theme: myTheme.theme,
-      title: 'Chat App',
-      initialRoute:
+    return WillPopScope(
+      onWillPop: ()async=>false,
 
-      provider.firebase_user==null?
-      LoginScreen.routename:HomeScreen.routename,
-      routes: {
-        RegisterScreen.routename : (context)=>RegisterScreen(),
-        LoginScreen.routename:(context)=>LoginScreen(),
-        HomeScreen.routename:(context)=>HomeScreen(),
-        AddRoomView.routename:(context)=>AddRoomView(),
-        ChatView.routename:(context)=>ChatView(),
-        ImageView.routename:(context)=>ImageView(),
-      },
+      child: MaterialApp(
+        theme: myTheme.theme,
+        title: 'Chat App',
+        initialRoute:
+
+        provider.firebase_user==null?
+        LoginScreen.routename:HomeScreen.routename,
+        routes: {
+          RegisterScreen.routename : (context)=>RegisterScreen(),
+          LoginScreen.routename:(context)=>LoginScreen(),
+          HomeScreen.routename:(context)=>HomeScreen(),
+          AddRoomView.routename:(context)=>AddRoomView(),
+          ChatView.routename:(context)=>ChatView(),
+          ImageView.routename:(context)=>ImageView(),
+        },
+      ),
     );
   }
 }
