@@ -119,9 +119,11 @@ class _AddRoomViewState extends State<AddRoomView> implements AddRoomConnect {
                   TextFormField(
                     onChanged: (text) => description = text,
                     maxLines: 4,
-                    minLines: 4,
+                    minLines: 1,
+                    keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                       hintText: 'Enter Room description',
+
                     ),
                     validator: (text) {
                       if (text == null || text.trim().isEmpty) {
@@ -137,7 +139,6 @@ class _AddRoomViewState extends State<AddRoomView> implements AddRoomConnect {
 
                     }
                   },
-
                       child: Text('Create',textAlign: TextAlign.center,))
                 ],
               ),

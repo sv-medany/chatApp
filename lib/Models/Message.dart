@@ -3,6 +3,7 @@ class Message{
   String roomid;
   String userid;
   int datetime;
+  int isurl;
   String sendername;
   String id;
   static String collectionname='Messages';
@@ -13,7 +14,8 @@ class Message{
   required this.content,
   required this.datetime,
   required this.userid,
-        required this.sendername
+        required this.sendername,
+        required  this.isurl,
   }
       );
   Message.fromJson(Map<String,dynamic> json):this(
@@ -22,7 +24,8 @@ class Message{
     datetime: json['datetime'] as int,
     userid: json['userid'] as String,
     id: json['id'] as String,
-    sendername: json['sendername'] as String
+    sendername: json['sendername'] as String,
+      isurl:  json['isurl'] as int
   );
 
   Map<String,dynamic> toJson(){
@@ -32,8 +35,8 @@ class Message{
       'datetime':datetime,
       'userid':userid,
       'id':id,
-      'sendername':sendername
-
+      'sendername':sendername,
+      'isurl' : isurl
     };
   }
 

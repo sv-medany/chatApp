@@ -6,20 +6,22 @@ import '../Models/MyUser.dart';
 class MessageWidget extends StatelessWidget {
   Message message;
   MyUser user;
+  bool ism;
 
-  MessageWidget({required this.message , required this.user});
+  MessageWidget({required this.message , required this.user,required this.ism});
   @override
   Widget build(BuildContext context) {
     return  user.user_id == message.userid?
-          SentWidget(message: message, datetime: DateTime.fromMillisecondsSinceEpoch(message.datetime)):
-          RecievedWidget(message: message, datetime: DateTime.fromMillisecondsSinceEpoch(message.datetime));
+          SentWidget(message: message, datetime: DateTime.fromMillisecondsSinceEpoch(message.datetime),isurl: ism,):
+          RecievedWidget(message: message, datetime: DateTime.fromMillisecondsSinceEpoch(message.datetime),isurl: ism,);
 
   }
 }
 class SentWidget extends StatelessWidget{
   Message message;
    DateTime datetime;
-  SentWidget({required this.message,required this.datetime});
+   bool isurl;
+  SentWidget({required this.message,required this.datetime,required this.isurl});
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -35,7 +37,7 @@ class SentWidget extends StatelessWidget{
             ),
             color: Colors.blue,
           ),
-          child: Text(message.content,style: TextStyle(
+          child:isurl?Image.network(message.content) :Text(message.content,style: TextStyle(
             color: Colors.white
           ),),
         ),
@@ -50,8 +52,8 @@ class SentWidget extends StatelessWidget{
 class RecievedWidget extends StatelessWidget {
   Message message;
   DateTime datetime;
-
-  RecievedWidget({required this.message, required this.datetime});
+  bool isurl;
+  RecievedWidget({required this.message, required this.datetime,required this.isurl});
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +70,7 @@ class RecievedWidget extends StatelessWidget {
             ),
             color: Colors.grey,
           ),
-          child: Text(message.content, style: TextStyle(
+          child:isurl?Image.network(message.content) : Text(message.content, style: TextStyle(
               color: Colors.black
           ),),
         ),
