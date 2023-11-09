@@ -10,6 +10,7 @@ import 'package:chatapp/Theme/myTheme.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 FirebaseMessaging messaging = FirebaseMessaging.instance;
 void printtoken()async{
@@ -66,6 +67,7 @@ class _myAppState extends State<myApp> {
     });
   }
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
     var provider=Provider.of<userProvider>(context);
     return MaterialApp(
       theme: myTheme.theme,
